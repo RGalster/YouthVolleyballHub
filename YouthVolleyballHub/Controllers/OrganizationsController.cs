@@ -24,6 +24,11 @@ namespace YouthVolleyballHub.Controllers
             return View(organizations);
         }
 
+        public IActionResult Add()
+        {
+            return View();
+        }
+
         [HttpPost]
         public IActionResult Add(AddOrganizationViewModel addOrganizationViewModel)
         {

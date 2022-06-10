@@ -29,8 +29,14 @@ namespace YouthVolleyballHub.Controllers
 
         public IActionResult Add()
         {
+
+            List<Organization> organizations = context.Organizations.ToList(); 
             List<EventCategory> categories = context.Categories.ToList();
-            AddEventViewModel addEventViewModel = new AddEventViewModel(categories);
+            
+            AddEventViewModel addEventViewModel = new AddEventViewModel(organizations, categories);
+
+            
+            
 
             return View(addEventViewModel);
         }
@@ -41,12 +47,14 @@ namespace YouthVolleyballHub.Controllers
             if (ModelState.IsValid)
             {
                 EventCategory theCategory = context.Categories.Find(addEventViewModel.CategoryId);
+                Organization theOrganization = context.Organizations.Find(addEventViewModel.OrganizationId);
 
                 Event newEvent = new Event
                 {
                     Name = addEventViewModel.Name,
                     Description = addEventViewModel.Description,
                     ContactEmail = addEventViewModel.ContactEmail,
+                    Organization = theOrganization,
                     Category = theCategory
                 };
 

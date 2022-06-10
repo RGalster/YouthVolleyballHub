@@ -18,15 +18,29 @@ namespace YouthVolleyballHub.ViewModels
         [EmailAddress]
         public string ContactEmail { get; set; }
 
+        [Required(ErrorMessage = "Organization is required")]
+        public int OrganizationId { get; set; }
+        public List<SelectListItem> Organizations { get; set; }
+
         [Required(ErrorMessage = "Category is required")]
         public int CategoryId { get; set; }
 
         public List<SelectListItem> Categories { get; set; }
-
-        public AddEventViewModel(List<EventCategory> categories)
+        public AddEventViewModel(List<Organization> organizations, List<EventCategory> categories)
         {
-            Categories = new List<SelectListItem>();
+            Organizations = new List<SelectListItem>();
+            foreach (var organization in organizations)
+            {
+                Organizations.Add(
+                    new SelectListItem
+                    {
+                        Value = organization.Id.ToString(),
+                        Text = organization.Name
+                    }
+                ); ;
+            }
 
+            Categories = new List<SelectListItem>();
             foreach (var category in categories)
             {
                 Categories.Add(
@@ -38,6 +52,24 @@ namespace YouthVolleyballHub.ViewModels
                 ); ;
             }
         }
+
+        
+
+        //public AddEventViewModel(List<EventCategory> categories)
+        //{
+        //    Categories = new List<SelectListItem>();
+
+        //    foreach (var category in categories)
+        //    {
+        //        Categories.Add(
+        //            new SelectListItem
+        //            {
+        //                Value = category.Id.ToString(),
+        //                Text = category.Name
+        //            }
+        //        ); ;
+        //    }
+        //}
 
         public AddEventViewModel() 
         { 

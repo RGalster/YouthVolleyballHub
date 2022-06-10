@@ -19,9 +19,6 @@ else
     <table class="table">
         <tr>
             <th>
-                Id
-            </th>
-            <th>
                 Name
             </th>
             <th>
@@ -37,7 +34,6 @@ else
         @foreach (var evt in Model)
         {
             <tr>
-                <td>@evt.Id</td>
                 <td><a asp-controller="Events" asp-action="Detail" asp-route-id="@evt.Id">@evt.Name</a></td>
                 <td>@evt.Description</td>
                 <td>@evt.ContactEmail</td>
