@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,7 @@ namespace YouthVolleyballHub.Controllers
             return View(events);
         }
 
+        [Authorize]
         public IActionResult Add()
         {
 
@@ -41,6 +43,7 @@ namespace YouthVolleyballHub.Controllers
             return View(addEventViewModel);
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Add(AddEventViewModel addEventViewModel)
         {
@@ -67,6 +70,7 @@ namespace YouthVolleyballHub.Controllers
             return View(addEventViewModel);
         }
 
+        [Authorize]
         public IActionResult Delete()
         {
             ViewBag.events = context.Events.ToList();
@@ -74,6 +78,7 @@ namespace YouthVolleyballHub.Controllers
             return View();
         }
 
+        [Authorize]
         [HttpPost]
         public IActionResult Delete(int[] eventIds)
         {
