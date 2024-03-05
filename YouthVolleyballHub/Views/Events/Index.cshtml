@@ -16,7 +16,28 @@
 }
 else
 {
-    <table class="table">
+    
+    //<div class="card-columns">
+    <div class="row">
+    @foreach (var evt in Model)
+    {
+        <div class="col-md-4">
+            <div class="card" style="width: 100%;">
+                <img class="card-img" src="https://img.freepik.com/free-photo/medium-shot-teacher-holding-clipboard_23-2149038821.jpg" alt="Event Image">
+                <div class="card-body">
+                    <h5 class="card-title"><a asp-controller="Events" asp-action="Detail" asp-route-id="@evt.Id">@evt.Name</a></h5>
+                    <p class="card-text">@evt.Description</p>
+                    <p class="card-text"><strong>Contact Email:</strong> @evt.ContactEmail</p>
+                    <p class="card-text"><strong>Category:</strong> @evt.Category.Name</p>
+                </div>
+            </div>
+        </div>
+    }
+    </div>
+
+    
+    
+    @*<table class="table">
         <tr>
             <th>
                 Name
@@ -40,5 +61,5 @@ else
                 <td>@evt.Category.Name</td>
             </tr>
         }
-    </table>
+    </table>*@
 }
